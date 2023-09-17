@@ -1,0 +1,135 @@
+---
+title: "Setting up your Python Environment"
+subtitle: "Posit::conf (2023)"
+author: "Posit Academy"
+format: revealjs
+---
+
+## Getting up
+
+![XKCD: Python Environment](https://imgs.xkcd.com/comics/python_environment.png)
+
+## PyCon 2022:
+
+![Calvin Hendryx-Parker: Bootstrapping Your Local Python Environment](img/youtube-pycon2022-bootstrap_python.png)
+[Calvin Hendryx-Parker: Bootstrapping Your Local Python Environment](https://www.youtube.com/watch?v=-YEUFGFHWgQ)
+
+## Why installing Python is confusing
+
+- There's so many different ways of installing it
+- Python is popular
+  - Operating systems come with python (for its own use)
+
+## Opinionated Python installation {.smaller}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- Installing python:
+  - `pyenv`
+  - [https://github.com/pyenv/pyenv](https://github.com/pyenv/pyenv)
+
+- Switching between multiple pythons
+  - `pyenv`!
+
+- Track dependencies
+  - `requirements.txt`
+:::
+
+::: {.column width="60%"}
+- Virtual environments
+  - `venv`
+  - [https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html)
+  - Comes with python since Python 3.3
+  - Nothing extra needed
+
+- Share virtual environment information with other people:
+  - Document via `README.md`
+  - `requirements.txt`
+  - Need to also track Python version in virtual environment:
+    - `pipenv`
+    - [https://pipenv.pypa.io/en/latest/](https://pipenv.pypa.io/en/latest/)
+
+:::
+
+::::
+
+## Pyenv's Virtual Environment Manager {.smaller}
+
+### Pros
+
+- It's a pyenv plugin
+- [https://github.com/pyenv/pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
+
+- Uses built-in `venv`
+- Makes it a bit easier to install everything in 1 place and list it
+
+### Cons
+
+- Windows `pyenv` doesn't support plugins
+- Your convenience might cause confusion for other people if they don't use the same system
+
+## Posit Solutions Engineering Guide
+
+- Minimum Viable Python
+- [https://solutions.posit.co/write-code/minimum-viable-python/](https://solutions.posit.co/write-code/minimum-viable-python/)
+
+## Install pyenv
+
+- [https://github.com/pyenv/pyenv](https://github.com/pyenv/pyenv)
+- Or use your package manager
+
+## Which python
+
+![](https://files.realpython.com/media/pyenv-pyramid.d2f35a19ded9.png)
+
+[Real Python: Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/)
+
+## Virtual environments
+
+- Standard Library: `venv`
+- [https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
+
+
+## `venv` {.smaller}
+
+1. First make sure you are using the python version you want
+  - e.g., `pyenv local`, `pyenv shell`
+2. Create the virtual environment with `venv`:
+
+```bash
+$ python -m venv venv # will create a venv folder in your working directory
+$ python -m venv .venv # will create a .venv folder in your working directory
+```
+
+3. Activate the `venv`:
+
+```
+$ source venv/bin/activate # on mac / linux
+C:\> venv/Scripts\activate.bat # on windows, use Activate.ps1 for powershell
+```
+
+4. Install your python packages
+
+```bash
+$ pip install pandas
+$ pip install -r requirements.txt
+```
+
+## Short `pyenv` cheatsheet {.smaller}
+
+- `which python`: will always point to pyenv
+  - `pyenv which python`: give you the path to python in use
+- `pyenv versions`: See all installed versions and which one in use
+
+<hr>
+
+- `pyenv install --list`: list all available python to install
+  - `pyenv install --list | grep 3.11`: list all python 3.11.x
+- `pyenv install 3.11.5`: install python 3.11.5
+
+<hr>
+
+- `pyenv global <PYTHON VERSION>`: sets the default python
+- `pyenv local <PYTHON VERSION>`: creates a `.python-version` file
+- `pyenv shell <PYTHON VERSION>`: uses `<PYTHON VERSION>` right now
