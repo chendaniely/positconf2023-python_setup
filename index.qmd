@@ -2,7 +2,9 @@
 title: "Setting up your Python Environment"
 subtitle: "Posit::conf (2023)"
 author: "Posit Academy"
-format: revealjs
+format:
+  revealjs:
+    embed-resources: true
 ---
 
 ## Getting up
